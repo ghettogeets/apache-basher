@@ -3,7 +3,8 @@
 # that runs on the Server at least has a DNS record that points to the IP-adress of the server. If not, the VirtualNameHost is most certainly dead and can be deleted. 
 # (this script doesnt delete anything. It just shows you a list)     
 
-
+ARRAYHOSTS = (apachectl -S 2>&1 |awk '/namevhost/{print $(NF-1);next}/server/{print $(NF-1);next}/alias/{print$NF;next}')
+echo ${ARRAYHOSTS[@]}
 apachectl -S &>aapachectl.txt                                              # on some machines the output of "apachectl -S" goes to stderr
 awk '/namevhost/{print $(NF-1);next}/server/{print $(NF-1);next}/alias/{print$NF;next}' aapachectl.txt >aaapachectl.txt    #extract the DomainName the server listens to
 awk '/[a-zA-Z]/{print}' aaapachectl.txt >aapachectl.txt
