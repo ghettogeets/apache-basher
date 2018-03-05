@@ -1,0 +1,5 @@
+#look for a VirtualHost in Apacheconfig and find the corresponding DocumentRoot.
+
+file;
+Hostname;
+grep -n '$Hostname' $file;  #shows linenumber
