@@ -1,5 +1,6 @@
+#!/bin/bash
 #look for a VirtualHost in Apacheconfig and find the corresponding DocumentRoot.
 
-file;
-Hostname;
-grep -n '$Hostname' $file;  #shows linenumber
+WEBSITE=$1
+FILE=$2
+sed -n "/VirtualHost/{:a;N;/\/VirtualHost/!ba; /${WEBSITE}/p}" ${FILE}  ## prints out the VirtualHost-Blocks that contain a Pattern
